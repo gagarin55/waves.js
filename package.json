@@ -1,6 +1,6 @@
 {
   "name": "waves.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Waves JavaScript Library: HTTP API client and auxiliary functions",
   "main": "index.js",
   "scripts": {
