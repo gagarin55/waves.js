@@ -4,8 +4,8 @@
   "description": "Waves JavaScript Library: HTTP API client and auxiliary functions",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --env.mode=build",
-    "dev": "webpack --progress --colors --watch --env.mode=dev",
+    "build": "webpack --mode=build",
+    "dev": "webpack --progress --colors --watch --mode=dev",
     "test": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js"
   },
   "repository": {
