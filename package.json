@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "build": "webpack --mode=build",
-    "dev": "webpack --progress --colors --watch --mode=dev",
-    "test": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js",
+    "dev": "webpack --progress --colors --mode=dev",
+    "test": "mocha --compilers js:babel-core/register --colors --recursive",
     "prepublish": "webpack --mode=build"
   },
   "repository": {
@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/gagarin55/waves.js#readme",
   "devDependencies": {
+    "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
@@ -40,5 +41,10 @@
     "mocha": "^3.2.0",
     "webpack": "^1.14.0",
     "yargs": "^6.6.0"
+  },
+  "dependencies": {
+    "base-x": "^2.0.4",
+    "blakejs": "^1.0.1",
+    "js-sha3": "^0.5.7"
   }
 }

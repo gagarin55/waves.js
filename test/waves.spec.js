@@ -1,5 +1,5 @@
 import chai from 'chai';
-import Waves from '../dist/waves.js';
+import Waves from '../src/index.js';
 
 chai.expect();
 
