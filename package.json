@@ -3,10 +3,15 @@
   "version": "0.0.3-1",
   "description": "Waves JavaScript Library: HTTP API client and auxiliary functions",
   "main": "dist/index.js",
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
     "build": "webpack --mode=build",
     "dev": "webpack --progress --colors --watch --mode=dev",
-    "test": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js"
+    "test": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js",
+    "prepublish": "webpack --mode=build"
   },
   "repository": {
     "type": "git",
