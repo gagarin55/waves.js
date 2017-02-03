@@ -3,7 +3,7 @@ export class Utils {
 
     /**
      * Convert array of bytes to string
-     * @param bytes Uint8Array
+     * @param {Uint8Array} bytes
      */
     static toHex(bytes: Uint8Array): string {
         return Array.prototype.map.call(bytes, (n) => {
@@ -15,7 +15,7 @@ export class Utils {
      * Should works as com.google.common.primitives.Ints.toByteArray
      * Input value 0x12131415 would yield the byte array {0x12, 0x13, 0x14, 0x15}.
      *
-     * @param num
+     * @param {number} num
      * @returns {Uint8Array}
      */
     static intToByteArray(num: number) : Uint8Array {
@@ -25,5 +25,15 @@ export class Utils {
             (num & 0x0000ff00) >> 8,
             (num & 0x000000ff)
         ]);
+    }
+
+    static equalArrays(array1: Uint8Array, array2: Uint8Array): boolean {
+        if (array1.length !== array2.length)
+            return false;
+        for (let i = 0; i < array1.length; i++) {
+            if (array1[i] !== array2[i])
+                return false;
+        }
+        return true;
     }
 }

@@ -5,7 +5,7 @@ export class Keccak {
 
     /**
      *
-     * @param input Uint8Array
+     * @param {Uint8Array} input
      * @returns {Uint8Array}
      */
     static hash32(input: Uint8Array): Uint8Array {

@@ -20,14 +20,14 @@ export class Base58 {
 
     /**
      *
-     * @param string
+     * @param {string} Base58 encoded string
      * @returns {Buffer}
      */
     static decode(string: string) {
         return Base58Converter.decode(string);
     }
 
-    static isValid(string: string) {
+    static isValid(string: string): boolean {
         return Base58Regexp.test(string);
     }
 }

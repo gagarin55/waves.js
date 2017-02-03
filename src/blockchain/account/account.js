@@ -4,9 +4,10 @@ import {Curve25519} from '../../crypto/curve25519';
 import {Address} from './address';
 import {Utils} from '../../utils/utils';
 import {INetworkParameters} from '../network-parameters';
+
 /**
  *
- * @param str
+ * @param {string} str
  * @returns {Uint8Array}
  */
 function strToBytes(str: string): Uint8Array {
@@ -26,8 +27,8 @@ export class Account {
 
     /**
      * Create new waves account from seed
-     * @param network
-     * @param seed string
+     * @param {INetworkParameters} network
+     * @param {string} seed
      * @returns {Account}
      */
     static create(network: INetworkParameters, seed: string): Account {

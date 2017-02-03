@@ -7,8 +7,8 @@ export class KeyPair {
     publicKey: Uint8Array;
     /**
      *
-     * @param privateKey Uint8Array
-     * @param publicKey Uint8Array
+     * @param {Uint8Array} privateKey
+     * @param {Uint8Array} publicKey
      */
     constructor(privateKey: Uint8Array, publicKey: Uint8Array) {
         this.privateKey = privateKey;
@@ -24,7 +24,7 @@ export class Curve25519 {
      *
      * See EllipticCurveImpl in Scala
      *
-     * @param seed Uint8Array
+     * @param {Uint8Array} seed
      * @returns {KeyPair}
      */
     static generateKeyPair(seed: Uint8Array): KeyPair {
@@ -40,10 +40,10 @@ export class Curve25519 {
     /**
      * Non deterministic signing
      *
-     * @param privateKey Uint8Array
-     * @param message Uint8Array
+     * @param {Uint8Array} privateKey
+     * @param {Uint8Array} message
      *
-     * @returns Uint8Array
+     * @returns {Uint8Array}
      */
     static sign(privateKey: Uint8Array, message: Uint8Array): Uint8Array {
         const random = CryptoProvider.current.getRandomBytes(64);
@@ -55,9 +55,9 @@ export class Curve25519 {
      *
      * Signing without secure randomness.
      *
-     * @param privateKey
-     * @param message
-     * @returns {*}
+     * @param {Uint8Array} privateKey
+     * @param {Uint8Array} message
+     * @returns {Uint8Array}
      */
     static signDeterministic(privateKey: Uint8Array, message: Uint8Array): Uint8Array {
         return axl.sign(privateKey, new Uint8Array(message));
