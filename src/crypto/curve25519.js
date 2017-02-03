@@ -46,7 +46,7 @@ export class Curve25519 {
      * @returns {Uint8Array}
      */
     static sign(privateKey: Uint8Array, message: Uint8Array): Uint8Array {
-        const random = CryptoProvider.current.getRandomBytes(64);
+        const random = CryptoProvider.current().getRandomBytes(64);
         return axl.sign(privateKey, new Uint8Array(message), random);
     }
 
@@ -65,7 +65,7 @@ export class Curve25519 {
 }
 
 class CryptoProvider {
-    static get current() {
+    static current() {
         if (typeof window !== 'undefined' && window.crypto) {
             // browser
             return new BrowserCryptoProvider();
