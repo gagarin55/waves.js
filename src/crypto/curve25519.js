@@ -1,23 +1,23 @@
+// @flow
 import * as axl from 'axlsign';
 import sha256 from 'fast-sha256';
 
 export class KeyPair {
-
+    privateKey: Uint8Array;
+    publicKey: Uint8Array;
     /**
      *
      * @param privateKey Uint8Array
      * @param publicKey Uint8Array
      */
-    constructor(privateKey, publicKey) {
+    constructor(privateKey: Uint8Array, publicKey: Uint8Array) {
         this.privateKey = privateKey;
         this.publicKey = publicKey;
     }
 }
 
 export class Curve25519 {
-    static get KEY_LENGTH() {
-        return  32;
-    }
+    static KEY_LENGTH = 32;
 
     /**
      * seed -> SHA256 -> (PrivateKey, PublicKey)
@@ -27,13 +27,13 @@ export class Curve25519 {
      * @param seed Uint8Array
      * @returns {KeyPair}
      */
-    static generateKeyPair(seed) {
+    static generateKeyPair(seed: Uint8Array): KeyPair {
         const sha256Hash = sha256.hash(seed);
         const pair = axl.generateKeyPair(sha256Hash);
         return new KeyPair(pair.private, pair.public);
     }
 
-    static verify(publicKey, message, signature) {
+    static verify(publicKey: Uint8Array, message: Uint8Array, signature: Uint8Array) {
         return axl.verify(publicKey, message, signature);
     }
 
@@ -45,8 +45,8 @@ export class Curve25519 {
      *
      * @returns Uint8Array
      */
-    static sign(privateKey, message) {
-        let random = CryptoProvider.current.getRandomBytes(64);
+    static sign(privateKey: Uint8Array, message: Uint8Array): Uint8Array {
+        const random = CryptoProvider.current.getRandomBytes(64);
         return axl.sign(privateKey, new Uint8Array(message), random);
     }
 
@@ -59,7 +59,7 @@ export class Curve25519 {
      * @param message
      * @returns {*}
      */
-    static signDeterministic(privateKey, message) {
+    static signDeterministic(privateKey: Uint8Array, message: Uint8Array): Uint8Array {
         return axl.sign(privateKey, new Uint8Array(message));
     }
 }
@@ -77,18 +77,16 @@ class CryptoProvider {
 }
 
 class NodeCryptoProvider {
-    constructor() {
-        this.crypto = require('crypto');
-    }
+    crypto = require('crypto');
 
-    getRandomBytes(count) {
+    getRandomBytes(count: number) {
         return new Uint8Array(this.crypto.randomBytes(count));
     }
 }
 
 class BrowserCryptoProvider {
 
-    getRandomBytes(count) {
+    getRandomBytes(count: number) {
         let random = new Uint8Array(count);
         window.crypto.getRandomValues(random);
         return random;

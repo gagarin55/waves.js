@@ -1,5 +1,4 @@
 var webpack = require('webpack');
-var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 var path = require('path');
 var env = require('yargs').argv.mode;
 
@@ -8,7 +7,7 @@ var libraryName = 'Waves';
 var plugins = [], outputFile;
 
 if (env === 'build') {
-    plugins.push(new UglifyJsPlugin({ minimize: true }));
+    plugins.push(new webpack.optimize.UglifyJsPlugin({ minimize: true }));
     outputFile = libraryName.toLowerCase() + '.min.js';
 } else {
     outputFile = libraryName.toLowerCase() + '.js';
@@ -28,7 +27,7 @@ var config = {
         loaders: [
             {
                 test: /(\.jsx|\.js)$/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 exclude: /(node_modules|bower_components)/
             },
             {

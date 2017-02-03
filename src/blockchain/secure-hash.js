@@ -1,3 +1,4 @@
+// @flow
 import { Blake2b } from '../crypto/blake2b';
 import { Keccak } from '../crypto/keccak';
 
@@ -9,9 +10,7 @@ import { Keccak } from '../crypto/keccak';
  */
 export class SecureHash {
 
-    static get DIGEST_SIZE() {
-        return 32;
-    }
+    static DIGEST_SIZE: number = 32;
 
     /**
      * value -> Blake2b -> Keccak
@@ -19,7 +18,7 @@ export class SecureHash {
      * @param input {Uint8Array}
      * @returns {Uint8Array}
      */
-    static hash(input) {
+    static hash(input: Uint8Array): Uint8Array {
         return Keccak.hash32(Blake2b.hash32(input));
     }
 }

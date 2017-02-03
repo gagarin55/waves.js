@@ -1,7 +1,11 @@
-export class TestNet {
-    get chainId() { return 'T'.charCodeAt(0); }
+export interface INetworkParameters {
+    chainId: number;
 }
 
-export class MainNet {
-    get chainId() { return 'W'.charCodeAt(0); }
+export class TestNet implements INetworkParameters {
+    chainId: number = 'T'.charCodeAt(0);
+}
+
+export class MainNet implements INetworkParameters {
+    chainId: number = 'W'.charCodeAt(0);
 }

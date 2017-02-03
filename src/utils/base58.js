@@ -1,3 +1,4 @@
+// @flow
 var baseX = require('base-x');
 
 const Base58Converter = baseX('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz');
@@ -13,7 +14,7 @@ export class Base58 {
      * @param buffer
      * @returns {string}
      */
-    static encode(buffer) {
+    static encode(buffer): string {
         return Base58Converter.encode(buffer);
     }
 
@@ -22,11 +23,11 @@ export class Base58 {
      * @param string
      * @returns {Buffer}
      */
-    static decode(string) {
+    static decode(string: string) {
         return Base58Converter.decode(string);
     }
 
-    static isValid(string) {
+    static isValid(string: string) {
         return Base58Regexp.test(string);
     }
 }

@@ -1,10 +1,11 @@
+// @flow
 export class Utils {
 
     /**
      * Convert array of bytes to string
      * @param bytes Uint8Array
      */
-    static toHex(bytes) {
+    static toHex(bytes: Uint8Array): string {
         return Array.prototype.map.call(bytes, (n) => {
             return (n < 16 ? '0' : '') + n.toString(16);
         }).join('');
@@ -17,7 +18,7 @@ export class Utils {
      * @param num
      * @returns {Uint8Array}
      */
-    static intToByteArray(num) {
+    static intToByteArray(num: number) : Uint8Array {
         return new Uint8Array([
             (num & 0xff000000) >> 24,
             (num & 0x00ff0000) >> 16,

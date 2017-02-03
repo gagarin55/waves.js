@@ -1,14 +1,15 @@
+// @flow
 import {SecureHash} from '../secure-hash';
 import {Curve25519} from '../../crypto/curve25519';
 import {Address} from './address';
 import {Utils} from '../../utils/utils';
-
+import {INetworkParameters} from '../network-parameters';
 /**
  *
  * @param str
  * @returns {Uint8Array}
  */
-function strToBytes(str) {
+function strToBytes(str: string): Uint8Array {
     str = decodeURI(encodeURIComponent(str));
     let bytes = new Uint8Array(str.length);
     for (let i = 0; i < str.length; ++i)
@@ -17,8 +18,9 @@ function strToBytes(str) {
 }
 
 export class Account {
+    address: string;
 
-    constructor(address) {
+    constructor(address: string) {
         this.address = address;
     }
 
@@ -28,7 +30,7 @@ export class Account {
      * @param seed string
      * @returns {Account}
      */
-    static create(network, seed) {
+    static create(network: INetworkParameters, seed: string): Account {
         // seed to bytes array
         const seedBytes = strToBytes(seed);
 
