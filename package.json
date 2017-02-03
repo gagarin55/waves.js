@@ -1,5 +1,6 @@
 {
   "name": "waves.js",
+  "productName": "Waves.js",
   "version": "0.0.3-2",
   "description": "Waves JavaScript Library: HTTP API client and auxiliary functions",
   "main": "dist/index.js",
@@ -23,7 +24,7 @@
     "JavaScript"
   ],
   "author": "gagarin55",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/gagarin55/waves.js/issues"
   },
