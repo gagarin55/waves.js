@@ -1,14 +1,24 @@
-export * from './utils/base58';
-export * from './blockchain/network-parameters';
-export * from './blockchain/account/account';
-export * from './blockchain/account/address';
+// @flow
+import {INetworkParameters, TestNet, MainNet} from './blockchain/network-parameters';
 
 export default class Waves {
-    constructor() {
+    _name: string;
+    _networkParams: INetworkParameters;
+
+    constructor(network: INetworkParameters) {
         this._name = 'Lib';
+        this._networkParams = network;
     }
 
-    get name() {
+    get name(): string {
         return this._name;
+    }
+
+    static TestNetParameters(): INetworkParameters {
+        return new TestNet();
+    }
+
+    static MainNetParameters(): INetworkParameters {
+        return new MainNet();
     }
 }
