@@ -22,11 +22,11 @@ export class Address {
      * @returns {string}
      */
     static create(networkParams: INetworkParameters, publicKey: Uint8Array): string {
-        if (publicKey.length !== Curve25519.KEY_LENGTH)
+        if (publicKey.length !== Curve25519.KEY_LENGTH) {
             throw new Error(`PublicKey length must be ${Curve25519.KEY_LENGTH} bytes`);
+        }
 
         const pubKeyHash = SecureHash.hash(publicKey).subarray(0, HASH_LENGTH);
-
         // concat two arrays
         const withoutChecksum = new Uint8Array(2 + HASH_LENGTH);
         withoutChecksum.set(new Uint8Array([ADDRESS_VERSION, networkParams.chainId]), 0);
@@ -62,6 +62,7 @@ export class Address {
         const withoutChecksum = addressBytes.subarray(0, ADDRESS_LENGTH - CHECKSUM_LENGTH);
         const checksum = addressBytes.subarray(ADDRESS_LENGTH - CHECKSUM_LENGTH);
         const computedChecksum = SecureHash.hash(withoutChecksum).subarray(0, CHECKSUM_LENGTH);
+
         return Utils.equalArrays(checksum, computedChecksum);
     }
 }

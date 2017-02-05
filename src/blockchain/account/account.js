@@ -13,8 +13,10 @@ import {INetworkParameters} from '../network-parameters';
 function strToBytes(str: string): Uint8Array {
     str = decodeURI(encodeURIComponent(str));
     let bytes = new Uint8Array(str.length);
-    for (let i = 0; i < str.length; ++i)
+
+    for (let i = 0; i < str.length; ++i) {
         bytes[i] = str.charCodeAt(i);
+    }
     return bytes;
 }
 
@@ -38,6 +40,7 @@ export class Account {
         // accSeed = nonce + seedBytes
         const accSeed = new Uint8Array(4 + seedBytes.length);
         const nonceBytes = Utils.intToByteArray(0);
+
         accSeed.set(nonceBytes, 0);
         accSeed.set(seedBytes, 4);
 
