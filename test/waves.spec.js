@@ -1,6 +1,5 @@
 import chai from 'chai';
 import Waves from '../src/index.js';
-import {MainNet, TestNet, INetworkParameters} from '../src/blockchain/network-parameters';
 chai.expect();
 const expect = chai.expect;
 

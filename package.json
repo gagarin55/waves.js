@@ -14,7 +14,7 @@
     "lint": "eslint src test",
     "dev": "webpack --progress --colors --mode=dev",
     "test": "flow && webpack --mode=dev && mocha --compilers js:babel-core/register --colors --recursive",
-    "prepublish": "npm run clean && npm run build"
+    "prepublish": "npm run clean && npm run lint && npm run test && npm run build"
   },
   "repository": {
     "type": "git",
