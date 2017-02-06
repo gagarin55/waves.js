@@ -1,5 +1,5 @@
 // @flow
-var baseX = require('base-x');
+const baseX = require('base-x');
 
 const Base58Converter = baseX('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz');
 const Base58Regexp = new RegExp('^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{0,}$');

@@ -1,5 +1,5 @@
-import { SecureHash } from '../../src/blockchain/secure-hash';
-import { Utils } from '../../src/utils/utils';
+import {SecureHash} from '../../src/blockchain/secure-hash';
+import {Utils} from '../../src/utils/utils';
 
 import chai from 'chai';
 chai.expect();

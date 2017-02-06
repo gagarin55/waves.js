@@ -1,6 +1,6 @@
-import { Address } from '../../../src/blockchain/account/address';
-import { Base58 } from '../../../src/utils/base58';
-import { TestNet, MainNet } from '../../../src/blockchain/network-parameters';
+import {Address} from '../../../src/blockchain/account/address';
+import {Base58} from '../../../src/utils/base58';
+import {TestNet, MainNet} from '../../../src/blockchain/network-parameters';
 
 import chai from 'chai';
 chai.expect();

@@ -1,6 +1,6 @@
 // @flow
-import { Blake2b } from '../crypto/blake2b';
-import { Keccak } from '../crypto/keccak';
+import {Blake2b} from '../crypto/blake2b';
+import {Keccak} from '../crypto/keccak';
 
 /**
  * Secure hash chain for Waves

@@ -1,5 +1,5 @@
-import { Blake2b } from '../../src/crypto/blake2b';
-import { Utils } from '../../src/utils/utils';
+import {Blake2b} from '../../src/crypto/blake2b';
+import {Utils} from '../../src/utils/utils';
 
 import chai from 'chai';
 chai.expect();

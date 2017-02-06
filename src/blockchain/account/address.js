@@ -1,14 +1,14 @@
 // @flow
-import { Base58 } from '../../utils/base58';
-import { Curve25519 } from '../../crypto/curve25519';
-import { INetworkParameters } from '../network-parameters';
-import { SecureHash } from '../secure-hash';
-import {Utils } from '../../utils/utils';
+import {Base58} from '../../utils/base58';
+import {Curve25519} from '../../crypto/curve25519';
+import {INetworkParameters} from '../network-parameters';
+import {SecureHash} from '../secure-hash';
+import {Utils} from '../../utils/utils';
 
 const ADDRESS_VERSION = 1;
-const HASH_LENGTH     = 20;
+const HASH_LENGTH = 20;
 const CHECKSUM_LENGTH = 4;
-const ADDRESS_LENGTH  = 1 + 1 + CHECKSUM_LENGTH + HASH_LENGTH;
+const ADDRESS_LENGTH = 1 + 1 + CHECKSUM_LENGTH + HASH_LENGTH;
 
 /**
  * Creation and validation addresses for Waves Blockchain

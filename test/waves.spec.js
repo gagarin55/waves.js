@@ -1,16 +1,18 @@
 import chai from 'chai';
 import Waves from '../src/index.js';
-
+import {MainNet, TestNet, INetworkParameters} from '../src/blockchain/network-parameters';
 chai.expect();
 const expect = chai.expect;
 
 let lib;
 
-describe('Given an instance of my library', function () {
-    before(function () {
+describe('Given an instance of my library', () => {
+
+    before(() => {
         lib = new Waves();
     });
-    describe('when I need the name', function () {
+
+    describe('when I need the name', () => {
         it('should return the name', () => {
             expect(lib.name).to.be.equal('Lib');
         });
