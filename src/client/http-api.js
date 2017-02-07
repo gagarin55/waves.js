@@ -15,6 +15,13 @@ export class HttpApi {
       .then(response => response.data.height);
   }
 
+  getBlocks(from: number, to: number): Promise<Array<Block>> {
+    return this.http.get(`blocks/seq/${from}/${to}`)
+      .then(response => {
+        return response.data.map(b => new Block(b));
+      });
+  }
+
   getBlockAt(height: number): Promise<Block> {
     return this.http.get(`blocks/at/${height}`)
       .then(response => {

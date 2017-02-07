@@ -15,6 +15,16 @@ describe.skip("HttpApi", () => {
     api = new HttpApi("https://nodes.wavesnodes.com");
   });
 
+  it("getBlocks should return blocks", () => {
+    return api.getBlocks(2, 4).then(blocks => {
+      expect(blocks.length).to.be.equal(3);
+      expect(blocks[0].height).to.be.equal(2);
+      expect(blocks[1].height).to.be.equal(3);
+      expect(blocks[2].height).to.be.equal(4);
+      expect(blocks[1].reference).to.be.equal(blocks[0].signature);
+    });
+  });
+
   it("getBlockAt", () => {
     return api.getBlockAt(355143).then(block => {
       expect(block.height).to.be.equal(355143);
