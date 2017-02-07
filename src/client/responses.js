@@ -76,3 +76,13 @@ export class Block {
     this.signature = json.signature;
   }
 }
+
+export class NodeStatus {
+  historySynchronizationStatus: string;
+  blockGeneratorStatus: string;
+
+  constructor(json: any) {
+    this.blockGeneratorStatus = json.blockGeneratorStatus;
+    this.historySynchronizationStatus = json.historySynchronizationStatus;
+  }
+}

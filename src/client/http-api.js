@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {Block, Transaction} from './responses';
+import {Block, Transaction, NodeStatus} from './responses';
 
 export class HttpApi {
   host: string;
@@ -35,4 +35,15 @@ export class HttpApi {
         return response.data.balance;
       });
   }
+
+  getNodeVersion(): Promise<string> {
+    return this.http.get('node/version')
+      .then(response => response.data.version);
+  }
+
+  getNodeStatus(): Promise<NodeStatus> {
+    return this.http.get('node/status')
+      .then(response => new NodeStatus(response.data));
+  }
 }
+
