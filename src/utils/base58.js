@@ -23,8 +23,8 @@ export class Base58 {
      * @param {string} Base58 encoded string
      * @returns {Buffer}
      */
-    static decode(string: string) {
-        return Base58Converter.decode(string);
+    static decode(string: string): Uint8Array {
+        return new Uint8Array(Base58Converter.decode(string));
     }
 
     static isValid(string: string): boolean {

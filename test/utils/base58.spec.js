@@ -1,8 +1,15 @@
 import chai from 'chai';
 import {Base58} from '../../src/utils/base58.js';
+import {Utils} from '../../src/utils/utils';
 
 chai.expect();
 const expect = chai.expect;
+
+function uintToString(uintArray) {
+  var encodedString = String.fromCharCode.apply(null, uintArray),
+    decodedString = decodeURIComponent(escape(atob(encodedString)));
+  return decodedString;
+}
 
 describe("Utils: Base58 Encoding / Decoding", () => {
 
@@ -20,5 +27,5 @@ describe("Utils: Base58 Encoding / Decoding", () => {
     it('should validate correctly', () => {
         expect(Base58.isValid('0')).to.be.equal(false);
         expect(Base58.isValid('3P93GB88cqtSHAXT9Jec3ePmJabakZNXq9A')).to.be.equal(true);
-    })
+    });
 });

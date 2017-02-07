@@ -14,4 +14,8 @@ describe("Utils", () => {
         expect(bytes[3]).to.be.equal(0x15);
     });
 
+    it('utf8 encode / decode', () => {
+      const str = "Hello, World!";
+      expect(Utils.bytesToUtf8(Utils.utf8ToBytes(str))).to.be.equal(str);
+    });
 });

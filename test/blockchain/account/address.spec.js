@@ -25,4 +25,9 @@ describe("Address", () => {
         expect(Address.isValid(validMainNet, new MainNet())).to.be.equal(true);
         expect(Address.isValid(validTestNet, new TestNet())).to.be.equal(true);
     });
+
+    it('should create burn type 1 address for mainnet', () => {
+      const address = Address.createBurn(new MainNet());
+      expect(address).to.be.equal("3P1vtjFEpXswXWfpiPuFKL1Mqt2NYrTaYMo");
+    });
 });

@@ -1,7 +1,8 @@
 import chai from 'chai';
-import Waves from '../src/index.js';
 chai.expect();
 const expect = chai.expect;
+
+import Waves from '../src/index.js';
 
 let lib;
 

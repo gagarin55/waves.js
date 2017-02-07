@@ -41,6 +41,29 @@ export class Address {
         return Base58.encode(addressBytes);
     }
 
+  /**
+   * Create Burning address type 1: NET_PARAMS + ZEROS + CHECKSUM
+   * Uint8Array [ 1, 87, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 14, 127, 186 ]
+   * @param networkParams
+   * @returns {string}
+   */
+    static createBurn(networkParams: INetworkParameters): string {
+      const pubKeyHash = new Uint8Array(HASH_LENGTH).fill(0);
+
+      // concat two arrays
+      const withoutChecksum = new Uint8Array(2 + HASH_LENGTH);
+      withoutChecksum.set(new Uint8Array([ADDRESS_VERSION, networkParams.chainId]), 0);
+      withoutChecksum.set(pubKeyHash, 2);
+
+      const checksum = SecureHash.hash(withoutChecksum).subarray(0, CHECKSUM_LENGTH);
+
+      // concat two arrays
+      const addressBytes = new Uint8Array(withoutChecksum.length + checksum.length);
+      addressBytes.set(withoutChecksum, 0);
+      addressBytes.set(checksum, withoutChecksum.length);
+      return Base58.encode(addressBytes);
+    }
+
     /**
      * Validate address for particular blockchain
      * @param {string} address
