@@ -57,6 +57,8 @@ export class Block {
   generationSignature: base58;
   transactions: Array<Transaction>;
   signature: base58;
+  // parent block
+  reference: base58;
 
   constructor(json: any) {
     this.height = json.height;
@@ -74,6 +76,7 @@ export class Block {
       new Transaction(Object.assign({}, tx, {height: json.height})));
 
     this.signature = json.signature;
+    this.reference = json.reference;
   }
 }
 
