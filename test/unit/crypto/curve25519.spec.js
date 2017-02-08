@@ -1,5 +1,5 @@
-import {Curve25519} from '../../src/crypto/curve25519';
-import {Base58} from '../../src/utils/base58';
+import {Curve25519} from '../../../src/crypto/curve25519';
+import {Base58} from '../../../src/utils/base58';
 
 import chai from 'chai';
 chai.expect();

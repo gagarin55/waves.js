@@ -3,12 +3,12 @@ chai.expect();
 const expect = chai.expect;
 const assert = chai.assert;
 
-import {HttpApi} from '../../src/client/http-api';
+import {HttpApi} from '../../../src/client/http-api';
 
 /**
- * These tests need mainnet server. So, it disabled by default
+ * These tests need mainnet server. So, we don't run it on CI
  */
-describe("HttpApi", () => {
+describe("integration: HttpApi", () => {
 
   let api;
   const burnAddress1 = "3P1vtjFEpXswXWfpiPuFKL1Mqt2NYrTaYMo";

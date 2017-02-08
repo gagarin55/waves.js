@@ -1,5 +1,5 @@
-import {Account} from '../../../src/blockchain/account/account';
-import {MainNet} from '../../../src/blockchain/network-parameters';
+import {Account} from '../../../../src/blockchain/account/account';
+import {MainNet} from '../../../../src/blockchain/network-parameters';
 
 import chai from 'chai';
 

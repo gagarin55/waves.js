@@ -1,5 +1,5 @@
-import {Keccak} from '../../src/crypto/keccak';
-import {Utils} from '../../src/utils/utils';
+import {Keccak} from '../../../src/crypto/keccak';
+import {Utils} from '../../../src/utils/utils';
 
 import chai from 'chai';
 chai.expect();

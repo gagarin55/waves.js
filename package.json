@@ -13,7 +13,9 @@
     "build": "webpack --mode=build",
     "lint": "eslint src test",
     "dev": "webpack --progress --colors --mode=dev",
-    "test": "flow && webpack --mode=dev && mocha --compilers js:babel-core/register --colors --recursive",
+    "test": "flow && webpack --mode=dev && npm run test:unit",
+    "test:unit": "mocha --compilers js:babel-core/register --colors $(find test/unit -name '*spec.js')",
+    "test:integration": "mocha --compilers js:babel-core/register --colors $(find test/integration -name '*spec.js')",
     "prepublish": "npm run clean && npm run lint && npm run test && npm run build"
   },
   "repository": {

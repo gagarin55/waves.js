@@ -1,5 +1,5 @@
 import chai from 'chai';
-import {Utils} from '../../src/utils/utils';
+import {Utils} from '../../../src/utils/utils';
 
 chai.expect();
 const expect = chai.expect;
