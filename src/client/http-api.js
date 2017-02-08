@@ -36,6 +36,18 @@ export class HttpApi {
       })
   }
 
+  /**
+   * Returns last transactions for address
+   *
+   * @param {string} address
+   * @param {number} limit Current Maximum value is ...
+   */
+  getAddressTransactions(address: string, limit: number = 100) {
+    return this.http.get(`transactions/address/${address}/limit/${limit}`)
+      // use data[0] due to incorrect waves node http api implementation
+      .then(response => response.data[0].map(tx => new Transaction(tx)));
+  }
+
   getBalance(address: string): Promise<number> {
     return this.http.get(`addresses/balance/${address}`)
       .then(response => {

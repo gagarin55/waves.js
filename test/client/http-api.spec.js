@@ -1,15 +1,17 @@
 import chai from 'chai';
 chai.expect();
 const expect = chai.expect;
+const assert = chai.assert;
 
 import {HttpApi} from '../../src/client/http-api';
 
 /**
  * These tests need mainnet server. So, it disabled by default
  */
-describe.skip("HttpApi", () => {
+describe("HttpApi", () => {
 
   let api;
+  const burnAddress1 = "3P1vtjFEpXswXWfpiPuFKL1Mqt2NYrTaYMo";
 
   before(() => {
     api = new HttpApi("https://nodes.wavesnodes.com");
@@ -36,6 +38,16 @@ describe.skip("HttpApi", () => {
       block.transactions.forEach(t => expect(t.height).to.be.equal(block.height));
     });
   })
+
+  it("getAddressTransactions returns txs where address sender or recipient", () => {
+    return api.getAddressTransactions(burnAddress1).then(txs => {
+      console.log(txs);
+      expect(txs.length).to.be.greaterThan(0);
+      txs.forEach(tx => {
+        assert(tx.sender === burnAddress1 || tx.recipient === burnAddress1)
+      });
+    })
+  });
 
   it("getTransaction: type = 4 asset = WAVES", () => {
     return api.getTransaction("HaFoYr1y8sGuR6bxJd8SaLnk4EAuAjnYwNuYsHeg3tn6").then(tx => {
@@ -67,7 +79,7 @@ describe.skip("HttpApi", () => {
   });
 
   it("getBalance", () => {
-    return api.getBalance("3P1vtjFEpXswXWfpiPuFKL1Mqt2NYrTaYMo")
+    return api.getBalance(burnAddress1)
       .then(amount => expect(amount).to.be.greaterThan(0))
   });
 
