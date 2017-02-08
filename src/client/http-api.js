@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {Block, Transaction, NodeStatus} from './responses';
+import {Block, Transaction, NodeStatus, AssetBalance} from './responses';
 
 export class HttpApi {
   host: string;
@@ -33,7 +33,7 @@ export class HttpApi {
     return this.http.get(`transactions/info/${id}`)
       .then(response => {
         return new Transaction(response.data);
-      })
+      });
   }
 
   /**
@@ -52,6 +52,13 @@ export class HttpApi {
     return this.http.get(`addresses/balance/${address}`)
       .then(response => {
         return response.data.balance;
+      });
+  }
+
+  getAssetsBalance(address: string): Promise<Array<AssetBalance>> {
+    return this.http.get(`assets/balance/${address}`)
+      .then(response => {
+        return response.data.balances.map(b => new AssetBalance(b));
       });
   }
 

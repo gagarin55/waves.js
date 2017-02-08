@@ -89,3 +89,17 @@ export class NodeStatus {
     this.historySynchronizationStatus = json.historySynchronizationStatus;
   }
 }
+
+export class AssetBalance {
+  assetId: base58;
+  balance: number;
+  totalQuantity: number;
+  issueTransaction: Transaction;
+
+  constructor(json: any) {
+    this.assetId = json.assetId;
+    this.balance = json.balance;
+    this.totalQuantity = json.quantity;
+    this.issueTransaction = new Transaction(json.issueTransaction);
+  }
+}

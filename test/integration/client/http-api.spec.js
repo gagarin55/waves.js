@@ -37,7 +37,7 @@ describe("integration: HttpApi", () => {
       expect(block.signature).to.be.equal("3i1nWmDUUBTNXyZSgRvLgNa8mg237Txr6wXZzCAMe5QUP2qJLXb3YSs63LqEN9vCijNJiAM1MAw8NwPGSshUU4b5");
       block.transactions.forEach(t => expect(t.height).to.be.equal(block.height));
     });
-  })
+  });
 
   it("getAddressTransactions returns txs where address sender or recipient", () => {
     return api.getAddressTransactions(burnAddress1).then(txs => {
@@ -83,5 +83,9 @@ describe("integration: HttpApi", () => {
       .then(amount => expect(amount).to.be.greaterThan(0))
   });
 
+  it("getAssetsbalance returns assets balances for address", () => {
+    return api.getAssetsBalance("3P31zvGdh6ai6JK6zZ18TjYzJsa1B83YPoj")
+      .then(balances => console.log(balances));
+  });
 
 });
