@@ -88,4 +88,8 @@ describe("integration: HttpApi", () => {
       .then(balances => console.log(balances));
   });
 
+  it('getUnconfirmedTransactions() return array of transactions', () => {
+    return api.getUnconfirmedTransactions()
+      .then(txs => console.log(txs));
+  });
 });

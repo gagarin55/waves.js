@@ -37,14 +37,24 @@ export class HttpApi {
   }
 
   /**
+   * Returns transactions from unconfirmed pool
+   */
+  getUnconfirmedTransactions(): Promise<Array<Transaction>> {
+    return this.http.get('transactions/unconfirmed')
+      .then(response => {
+        return response.data.map(tx => new Transaction(tx));
+      });
+  }
+
+  /**
    * Returns last transactions for address
    *
    * @param {string} address
    * @param {number} limit Current Maximum value is ...
    */
   getAddressTransactions(address: string, limit: number = 100) {
+    // use data[0] due to incorrect waves node http api implementation
     return this.http.get(`transactions/address/${address}/limit/${limit}`)
-      // use data[0] due to incorrect waves node http api implementation
       .then(response => response.data[0].map(tx => new Transaction(tx)));
   }
 
