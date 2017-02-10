@@ -83,9 +83,13 @@ describe("integration: HttpApi", () => {
       .then(amount => expect(amount).to.be.greaterThan(0))
   });
 
-  it("getAssetsbalance returns assets balances for address", () => {
-    return api.getAssetsBalance("3P31zvGdh6ai6JK6zZ18TjYzJsa1B83YPoj")
-      .then(balances => console.log(balances));
+  it("getAssetsBalance returns assets balances for address", () => {
+    return api.getAssetsBalance(burnAddress1)
+      .then(balances => {
+        const wct = balances.filter(b => b.assetId=='DHgwrRvVyqJsepd32YbBqUeDH4GJ1N984X8QoekjgH8J')[0];
+        expect(wct.balance).to.be.greaterThan(0);
+        expect(wct.totalQuantity).to.be.equal(1000000000);
+      });
   });
 
   it('getUnconfirmedTransactions() return array of transactions', () => {
