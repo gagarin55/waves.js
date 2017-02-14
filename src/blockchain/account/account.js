@@ -31,15 +31,16 @@ export class Account {
      * Create new waves account from seed
      * @param {INetworkParameters} network
      * @param {string} seed
+     * @param {number} nonce Determine particular account derived from same seed
      * @returns {Account}
      */
-    static create(network: INetworkParameters, seed: string): Account {
+    static create(network: INetworkParameters, seed: string, nonce: number = 0): Account {
         // seed to bytes array
         const seedBytes = strToBytes(seed);
 
         // accSeed = nonce + seedBytes
         const accSeed = new Uint8Array(4 + seedBytes.length);
-        const nonceBytes = Utils.intToByteArray(0);
+        const nonceBytes = Utils.intToByteArray(nonce);
 
         accSeed.set(nonceBytes, 0);
         accSeed.set(seedBytes, 4);
