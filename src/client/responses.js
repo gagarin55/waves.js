@@ -32,8 +32,8 @@ export class Transaction {
     this.sender = json.sender;
     this.senderPublicKey = json.senderPublicKey;
     this.recipient = json.recipient;
-    this.assetId = json.assetId;
-    this.feeAssetId =json.feeAssetId;
+    this.assetId = json.assetId || null;
+    this.feeAssetId = json.feeAssetId;
     this.fee = json.fee;
     this.attachment = json.attachment;
     this.signature = json.signature;
