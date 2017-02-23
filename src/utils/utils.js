@@ -37,6 +37,27 @@ export class Utils {
     ]);
   }
 
+
+  /**
+   * Returns a big-endian representation of {@code value} in an 8-element byte
+   * array;
+   *
+   * For example, the input value {@code 0x0000001516171819L} would yield the
+   * byte array {@code {0x00, 0x00, 0x00, 0x15, 0x16, 0x17, 0x18, 0x19}}.
+   * 
+   */
+  static longToByteArray(value: number) {
+    if (!Number.isSafeInteger(value))
+      throw Error(`Invalid value: ${value}`);
+
+    const result = new Uint8Array(8);
+    for (let i = 7; i >= 0; i--) {
+      result[i] = value & (0xFF);
+      value = value / 256;
+    }
+    return result;
+  }
+
   static equalArrays(array1: Uint8Array, array2: Uint8Array): boolean {
     if (array1.length !== array2.length) {
       return false;
