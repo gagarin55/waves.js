@@ -24,6 +24,8 @@ describe('Curve25519', () => {
     const privateKey = Base58.decode('4nAEobwe4jB5Cz2FXDzGDEPge89YaWm9HhKwsFyeHwoc');
 
     let signature = Curve25519.signDeterministic(privateKey, messageBytes);
+    expect(signature.length).to.be.equal(Curve25519.SIGNATURE_LENGTH);
+
     expect(Curve25519.verify(publicKey, messageBytes, signature)).to.be.equal(true);
     expect(Base58.encode(signature))
       .to.be.equal('2HhyaYcKJVEPVgoPkjN3ZCVYKaobwxavLFnn75if6D95Nrc2jHAwX72inxsZpv9KVpMASqQfDB5KRqfkJutz5iav');

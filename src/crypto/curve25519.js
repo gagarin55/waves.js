@@ -47,7 +47,7 @@ export class KeyPair {
 
 export class Curve25519 {
   static KEY_LENGTH = 32;
-
+  static SIGNATURE_LENGTH = 64;
   /**
    * seed -> SHA256 -> (PrivateKey, PublicKey)
    *
