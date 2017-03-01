@@ -1,1 +1,1 @@
-export const ASSET_TRANSFER = 1;
+export const ASSET_TRANSFER = 4;

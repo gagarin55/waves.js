@@ -1,4 +1,4 @@
 export class Transaction {
   type: number;
-  signingData() {}
+  signingData(): Uint8Array {}
 }

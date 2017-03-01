@@ -9,9 +9,9 @@ export class Transaction {
   amount: number;
   sender: string;
   senderPublicKey: base58;
-  recipient: string;
-  assetId: ?string;
-  feeAssetId: ?string;
+  recipient: base58;
+  assetId: ?base58;
+  feeAssetId: ?base58;
   fee: number;
   attachment: base58;
   signature: base58;
@@ -33,7 +33,7 @@ export class Transaction {
     this.senderPublicKey = json.senderPublicKey;
     this.recipient = json.recipient;
     this.assetId = json.assetId || null;
-    this.feeAssetId = json.feeAssetId;
+    this.feeAssetId = json.feeAssetId || null;
     this.fee = json.fee;
     this.attachment = json.attachment;
     this.signature = json.signature;

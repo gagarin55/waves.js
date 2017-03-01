@@ -6,6 +6,13 @@ const expect = chai.expect;
 
 describe("Utils", () => {
 
+  it('shortToByteArray should works as in Java', () => {
+    const bytes = Utils.shortToByteArray(0x1234);
+    expect(bytes[0]).to.be.equal(0x12);
+    expect(bytes[1]).to.be.equal(0x34);
+
+  });
+
   it('intToByteArray should works as in Java', () => {
     const bytes = Utils.intToByteArray(0x12131415);
     expect(bytes[0]).to.be.equal(0x12);
@@ -17,7 +24,7 @@ describe("Utils", () => {
 
   it('longToByteArray should works as in Java', () => {
     const bytes1 = Utils.longToByteArray(0x0000001516171819);
-   
+
     expect(bytes1[0]).to.be.equal(0x00);
     expect(bytes1[1]).to.be.equal(0x00);
     expect(bytes1[2]).to.be.equal(0x00);

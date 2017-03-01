@@ -14,7 +14,7 @@ How Tx must be serialized to bytes.
 |8 | Amount          | Byte[8]        |     |
 |9 | Fee             | Byte[8]        |     |
 |10| Recipient Address | Byte[26]     |     |
-|11| Attachment Size  |   Byte        | MAX = 140 |
+|11| Attachment Size  |   Byte[2]        | MAX = 140 |
 |12| Attachment       | Byte[]        |     |
 
 

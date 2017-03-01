@@ -12,5 +12,6 @@ describe("HttpApi responses", () => {
   it('Transaction constructor from PaymentTransaction json', () => {
     const tx = new Transaction({});
     expect(tx.assetId).to.be.equal(null);
+    expect(tx.feeAssetId).to.be.equal(null);
   });
 });
