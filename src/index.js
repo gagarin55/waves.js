@@ -4,6 +4,8 @@ import {HttpApi} from './client/http-api';
 import {Account} from './blockchain/account/account';
 import {Transactions} from './blockchain/transactions/transactions';
 
+export {ValidationResult} from './blockchain/transactions/transactions';
+
 export default class Waves {
   _name: string;
   _networkParams: INetworkParameters;
