@@ -1,5 +1,8 @@
 import axios from 'axios';
-import {Block, Transaction, NodeStatus, AssetBalance} from './responses';
+import {Block, Transaction, NodeStatus, AssetBalance, ErrorResponse} from './responses';
+import {AssetTransferTransaction} from './requests';
+
+export {AssetTransferTransaction} from './requests';
 
 export class HttpApi {
   host: string;
@@ -8,6 +11,17 @@ export class HttpApi {
   constructor(host: string) {
     this.host = host;
     this.http = axios.create({baseURL: host});
+  }
+
+  publishAssetTransfer(tx: AssetTransferTransaction): Promise<Transaction> {
+    return this.http.post('assets/broadcast/transfer', tx.json())
+      .then(response => new Transaction(response.data))
+      .catch(error => {
+        if (error.response) {
+          return Promise.reject(new ErrorResponse(error.response.data.error, error.response.data.message));
+        }
+        return Promise.reject(error);
+      });
   }
 
   getHeight(): Promise<number> {

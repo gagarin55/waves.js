@@ -42,12 +42,12 @@ export class TransferTransaction extends Transaction {
     bytes = concat(bytes, new Uint8Array([TxTypes.ASSET_TRANSFER]));
     bytes = concat(bytes, this.senderPublicKey);
 
-    const assetIdBytes = (this.amount.assetId.length > 0) ?
+    const assetIdBytes = (this.amount.assetId != null && this.amount.assetId.length > 0) ?
       concat(new Uint8Array([0x01]), this.amount.assetId) :
       new Uint8Array([0]);
     bytes = concat(bytes, assetIdBytes);
 
-    const feeAssetIdBytes = (this.fee.assetId.length > 0) ?
+    const feeAssetIdBytes = (this.fee.assetId != null && this.fee.assetId.length > 0) ?
       concat(new Uint8Array([0x01]), this.fee.assetId):
       new Uint8Array([0]);
 
@@ -65,6 +65,32 @@ export class TransferTransaction extends Transaction {
     return bytes;
   }
 
+  base58() {
+    return {
+      senderPublicKey: Base58.encode(this.senderPublicKey),
+      recipient: Base58.encode(this.recipient),
+      assetId: (this.amount.assetId != null) ? Base58.encode(this.amount.assetId) : null,
+      amount: this.amount.value,
+      fee: this.fee.value,
+      feeAssetId: (this.fee.assetId != null) ? Base58.encode(this.fee.assetId) : null,
+      timestamp: this.timestamp,
+      attachment: (this.attachment != null) ? Base58.encode(this.attachment) : null
+    };
+  }
+
+  /**
+   * Build TransferTransaction from Base58 values
+   *
+   * @param senderPublicKey
+   * @param recipientAddress
+   * @param assetId
+   * @param amount
+   * @param fee
+   * @param feeAssetId
+   * @param timestamp
+   * @param attachment
+   * @returns {TransferTransaction}
+   */
   static fromBase58(senderPublicKey: string,
                     recipientAddress: string,
                     assetId: ?string,

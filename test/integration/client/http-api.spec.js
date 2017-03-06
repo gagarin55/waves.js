@@ -3,7 +3,8 @@ chai.expect();
 const expect = chai.expect;
 const assert = chai.assert;
 
-import {HttpApi} from '../../../src/client/http-api';
+import {HttpApi, AssetTransferTransaction} from '../../../src/client/http-api';
+import * as HttpApiErrors from '../../../src/client/http-api-errors';
 
 /**
  * These tests need mainnet server. So, we don't run it on CI
@@ -15,6 +16,23 @@ describe("integration: HttpApi", () => {
 
   before(() => {
     api = new HttpApi("https://nodes.wavesnodes.com");
+  });
+
+  it('publishAssetTransfer: publising old tx', () => {
+    const tx = new AssetTransferTransaction(
+      '95Uw4Pa2yHm7L8aeQbPw4xyRTcSxSpgYDAHUx6NX95N4',
+      null,
+      '3P4W5CSKhHaemExmzbWyqPSXKTrq7aRm7ju',
+      5999900000,
+      100000,
+      null,
+      1488790988834,
+      "",
+      '4Z1JqQrUqGVQGEDtK6mvvB4iN3tWJD2AVSnZJgouFCfSRLujQfAAkhYint5hZhhKoSrzCbjnSYqbvkCy69Zn1RBR'
+    );
+
+    api.publishAssetTransfer(tx)
+      .catch(error => expect(error.code).to.be.equal(HttpApiErrors.STATE_CHECK_FAILED_CODE));
   });
 
   it("getBlocks should return blocks", () => {

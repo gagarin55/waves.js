@@ -71,5 +71,4 @@ describe('TransferTransaction', () => {
     expect(signed.validSignature()).to.be.equal(true);
 
   });
-
 });

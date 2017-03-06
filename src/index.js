@@ -3,17 +3,14 @@ import {INetworkParameters, TestNet, MainNet} from './blockchain/network-paramet
 import {HttpApi} from './client/http-api';
 import {Account} from './blockchain/account/account';
 import {Transactions} from './blockchain/transactions/transactions';
+import {TransferTransaction} from './blockchain/transactions/transferTransaction';
+import {SignedTransaction} from './blockchain/transactions/signedTransaction';
 
 export {ValidationResult} from './blockchain/transactions/transactions';
 
 export default class Waves {
   _name: string;
   _networkParams: INetworkParameters;
-
-  /**
-   * Account API
-   */
-  static Account: Class<Account> = Account;
 
   /**
    * Transactions API
@@ -29,9 +26,18 @@ export default class Waves {
     return this._name;
   }
 
-  createAccount(seed: string): Account {
-    return Account.create(this._networkParams, seed);
+  createAccount(seed: string, nonce: number = 0): Account {
+    return Account.create(this._networkParams, seed, nonce);
   }
+
+  // createAssetTransfer(): TransferTransaction {
+  //
+  // }
+
+  static signTransaction(tx, privateKey): SignedTransaction {
+    return SignedTransaction.sign(tx, privateKey);
+  }
+
 
   client(host: string): HttpApi {
     return new HttpApi(host);
