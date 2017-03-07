@@ -2,10 +2,13 @@
 import {INetworkParameters, TestNet, MainNet} from './blockchain/network-parameters';
 import {HttpApi} from './client/http-api';
 import {Account} from './blockchain/account/account';
+import {Address} from './blockchain/account/address';
 import {Transactions} from './blockchain/transactions/transactions';
 import {TransferTransaction} from './blockchain/transactions/transferTransaction';
 import {SignedTransaction} from './blockchain/transactions/signedTransaction';
 import {Base58} from './utils/base58';
+
+
 export {ValidationResult} from './blockchain/transactions/transactions';
 
 export default class Waves {
@@ -33,6 +36,16 @@ export default class Waves {
 
   createAccount(seed: string, nonce: number = 0): Account {
     return Account.create(this._networkParams, seed, nonce);
+  }
+
+  /**
+   * Validate address according to blockchain
+   *
+   * @param address
+   * @returns {boolean}
+   */
+  isValidAddress(address: string): boolean {
+    return Address.isValid(address, this._networkParams);
   }
 
   // createAssetTransfer(): TransferTransaction {

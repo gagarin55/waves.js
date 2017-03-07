@@ -22,4 +22,14 @@ describe('Given an instance of my library', () => {
        expect(Waves.MainNetParameters).to.not.be.null;
        expect(Waves.TestNetParameters).to.not.be.null;
     });
+
+    it('should validate addresses', () => {
+      const mainnet = new Waves(Waves.MainNetParameters);
+      expect(mainnet.isValidAddress('3PE9n5HRUsU6kjknatxPfvam7WmKy8EJcRW')).to.be.equal(true);
+      expect(mainnet.isValidAddress('3MydsP4UeQdGwBq7yDbMvf9MzfB2pxFoUKU')).to.be.equal(false);
+
+      const testnet = new Waves(Waves.TestNetParameters);
+      expect(testnet.isValidAddress('3PE9n5HRUsU6kjknatxPfvam7WmKy8EJcRW')).to.be.equal(false);
+      expect(testnet.isValidAddress('3MydsP4UeQdGwBq7yDbMvf9MzfB2pxFoUKU')).to.be.equal(true);
+    });
 });
