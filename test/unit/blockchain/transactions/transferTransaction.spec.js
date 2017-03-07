@@ -69,6 +69,16 @@ describe('TransferTransaction', () => {
       1, 100000, null, 1488364024578, attachment);
     const signed = new SignedTransaction(tx, Base58.decode(signature));
     expect(signed.validSignature()).to.be.equal(true);
+  });
 
+  it('should calculate tx id', () => {
+    const senderPublicKey = 'AD1rvkdTHKRmbSTeziLZ5zm2rARoTEoZa4re6ZkvJD7H';
+    const recipient = "3P5zxJCMrPYMKX4apJrUxoPmFMbYfKza48w";
+    const assetId = '4eWBPyY4XNPsFLoQK3iuVUfamqKLDu5o6zQCYyp9d8Ae';
+    const attachment = '5LFVz2k3cZ4avvzKQFqQ7FmCiJFiT';
+    const tx = TransferTransaction.fromBase58(senderPublicKey, recipient, assetId,
+      1, 100000, null, 1488364024578, attachment);
+
+    expect(Base58.encode(tx.id)).to.be.equal('CU46FowGVMXnws5a2Jn17qD2McXZDqkyjHXWxyWLreTq');
   });
 });

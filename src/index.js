@@ -7,7 +7,7 @@ import {Transactions} from './blockchain/transactions/transactions';
 import {TransferTransaction} from './blockchain/transactions/transferTransaction';
 import {SignedTransaction} from './blockchain/transactions/signedTransaction';
 import {Base58} from './utils/base58';
-
+import {AssetValue} from './blockchain/transactions/assetValue';
 
 export {ValidationResult} from './blockchain/transactions/transactions';
 
@@ -48,9 +48,37 @@ export default class Waves {
     return Address.isValid(address, this._networkParams);
   }
 
-  // createAssetTransfer(): TransferTransaction {
-  //
-  // }
+  /**
+   * TODO: add attachments
+   *
+   * @param senderPublicKey
+   * @param recipient
+   * @param assetId
+   * @param amount
+   * @param feeAssetId
+   * @param fee
+   * @param timestamp
+   * @returns {TransferTransaction}
+   */
+  createAssetTransfer(senderPublicKey: string,
+                      recipient: string,
+                      assetId: ?string,
+                      amount: number,
+                      feeAssetId: ?string,
+                      fee: number,
+                      timestamp: number): TransferTransaction {
+
+    const senderPubKeyBytes = Base58.decode(senderPublicKey);
+    const recipientBytes = Base58.decode(recipient);
+    const assetIdBytes = (assetId == null) ? new Uint8Array() : Base58.decode(assetId);
+    const feeAssetIdBytes = (feeAssetId == null) ? new Uint8Array() : Base58.decode(feeAssetId);
+
+    const tx = new TransferTransaction(senderPubKeyBytes, recipientBytes,
+      new AssetValue(assetIdBytes, amount),
+      new AssetValue(feeAssetIdBytes, fee),
+      timestamp, null);
+    return tx;
+  }
 
   static signTransaction(tx, privateKey): SignedTransaction {
     return SignedTransaction.sign(tx, privateKey);

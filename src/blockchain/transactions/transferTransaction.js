@@ -4,6 +4,7 @@ import * as TxTypes from './types';
 import {Transaction} from './transaction';
 import {Utils} from '../../utils/utils';
 import {Base58} from '../../utils/base58';
+import {Blake2b} from '../../crypto/blake2b';
 
 export class TransferTransaction extends Transaction {
 
@@ -13,6 +14,7 @@ export class TransferTransaction extends Transaction {
   timestamp: number;
   recipient: Uint8Array;
   attachment: ?Uint8Array;
+  id: Uint8Array;
 
   constructor(
     senderPublicKey: Uint8Array,
@@ -30,6 +32,7 @@ export class TransferTransaction extends Transaction {
     this.type = TxTypes.ASSET_TRANSFER;
     this.timestamp = timestamp;
     this.attachment = attachment;
+    this.id = Blake2b.hash32(this.signingData());
   }
 
   /**
@@ -67,6 +70,7 @@ export class TransferTransaction extends Transaction {
 
   base58() {
     return {
+      id: Base58.encode(this.id),
       senderPublicKey: Base58.encode(this.senderPublicKey),
       recipient: Base58.encode(this.recipient),
       assetId: (this.amount.assetId != null) ? Base58.encode(this.amount.assetId) : null,
