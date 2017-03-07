@@ -5,7 +5,7 @@ import {Account} from './blockchain/account/account';
 import {Transactions} from './blockchain/transactions/transactions';
 import {TransferTransaction} from './blockchain/transactions/transferTransaction';
 import {SignedTransaction} from './blockchain/transactions/signedTransaction';
-
+import {Base58} from './utils/base58';
 export {ValidationResult} from './blockchain/transactions/transactions';
 
 export default class Waves {
@@ -16,6 +16,11 @@ export default class Waves {
    * Transactions API
    */
   static Transactions: Class<Transactions> = Transactions;
+
+  /**
+   * Base58 encode / decode API
+   */
+  static Base58: Class<Base58> = Base58;
 
   constructor(network: INetworkParameters) {
     this._name = 'Lib';
