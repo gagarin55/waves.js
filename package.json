@@ -1,7 +1,7 @@
 {
   "name": "waves.js",
   "productName": "Waves.js",
-  "version": "0.0.7-4",
+  "version": "0.0.7-5",
   "description": "Waves JavaScript Library: HTTP API client and auxiliary functions",
   "main": "dist/index.js",
   "files": [
