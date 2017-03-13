@@ -5,6 +5,9 @@ import {AssetTransferTransaction} from './requests';
 export {AssetTransferTransaction} from './requests';
 
 export class HttpApi {
+
+  static AssetTransferTransaction: Class<AssetTransferTransaction> = AssetTransferTransaction;
+
   host: string;
   http;
 

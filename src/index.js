@@ -15,6 +15,8 @@ export default class Waves {
   _name: string;
   _networkParams: INetworkParameters;
 
+  static HttpApi: Class<HttpApi> = HttpApi;
+
   /**
    * Transactions API
    */
