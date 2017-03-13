@@ -18,6 +18,10 @@ describe("Utils: Base58 Encoding / Decoding", () => {
     expect(Base58.encode(Base58.decode(base58))).to.be.equal(base58);
   });
 
+  it('should decode empty string to empty array', () => {
+    expect(Base58.decode('').length).to.be.equal(0);
+  });
+
   it('should validate correctly', () => {
     expect(Base58.isValid('0')).to.be.equal(false);
     expect(Base58.isValid('3P93GB88cqtSHAXT9Jec3ePmJabakZNXq9A')).to.be.equal(true);

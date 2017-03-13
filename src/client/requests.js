@@ -33,7 +33,8 @@ export class AssetTransferTransaction {
     if (assetId != null && !Base58.isValid(assetId))
       throw new Error("Invalid Base58 value of assetId");
 
-    this.assetId = assetId;
+    // we need null instead empty string
+    this.assetId = (assetId === '') ? null : assetId;
 
     if (!Base58.isValid(recipient))
       throw new Error("Invalid Base58 value of recipient");
@@ -41,7 +42,13 @@ export class AssetTransferTransaction {
     this.recipient = recipient;
     this.amount = amount;
     this.fee = fee;
-    this.feeAssetId = feeAssetId;
+
+    if (feeAssetId != null && !Base58.isValid(feeAssetId))
+      throw new Error("Invalid Base58 value of feeAssetId");
+
+    // we need null in json request
+    this.feeAssetId = (feeAssetId === '') ? null : feeAssetId;
+
     this.timestamp = timestamp;
     this.attachment = attachment;
 
