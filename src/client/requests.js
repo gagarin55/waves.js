@@ -1,5 +1,6 @@
 //@flow
 import {Base58} from '../utils/base58';
+import {SignedTransaction} from '../blockchain/transactions/signedTransaction';
 
 type base58 = string;
 type address = string;
@@ -62,4 +63,17 @@ export class AssetTransferTransaction {
     return JSON.stringify(this);
   }
 
+  static fromSigned(signedTx: SignedTransaction): AssetTransferTransaction {
+    return new AssetTransferTransaction(
+      Base58.encode(signedTx.tx.senderPublicKey),
+      Base58.encode(signedTx.tx.amount.assetId),
+      Base58.encode(signedTx.tx.recipient),
+      signedTx.tx.amount.value,
+      signedTx.tx.fee.value,
+      Base58.encode(signedTx.tx.fee.assetId),
+      signedTx.tx.timestamp,
+      null,
+      Base58.encode(signedTx.signature)
+    );
+  }
 }
