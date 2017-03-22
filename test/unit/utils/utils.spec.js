@@ -47,7 +47,7 @@ describe("Utils", () => {
   });
 
   it('utf8 encode / decode', () => {
-    const str = "Hello, World!";
+    const str = "Hello, World! Привет! 雌犬";
     expect(Utils.bytesToUtf8(Utils.utf8ToBytes(str))).to.be.equal(str);
   });
 });

@@ -5,21 +5,6 @@ import {Address} from './address';
 import {Utils} from '../../utils/utils';
 import {INetworkParameters} from '../network-parameters';
 
-/**
- *
- * @param {string} str
- * @returns {Uint8Array}
- */
-function strToBytes(str: string): Uint8Array {
-  str = decodeURI(encodeURIComponent(str));
-  let bytes = new Uint8Array(str.length);
-
-  for (let i = 0; i < str.length; ++i) {
-    bytes[i] = str.charCodeAt(i);
-  }
-  return bytes;
-}
-
 export class Account {
   address: string;
   keys: KeyPair;
@@ -32,13 +17,13 @@ export class Account {
   /**
    * Create new waves account from seed
    * @param {INetworkParameters} network
-   * @param {string} seed
+   * @param {string} seed as UTF-8 string
    * @param {number} nonce Determine particular account derived from same seed
    * @returns {Account}
    */
   static create(network: INetworkParameters, seed: string, nonce: number = 0): Account {
     // seed to bytes array
-    const seedBytes = strToBytes(seed);
+    const seedBytes = Utils.utf8ToBytes(seed);
 
     // accSeed = nonce + seedBytes
     const accSeed = new Uint8Array(4 + seedBytes.length);

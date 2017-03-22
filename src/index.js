@@ -7,6 +7,7 @@ import {Transactions} from './blockchain/transactions/transactions';
 import {TransferTransaction} from './blockchain/transactions/transferTransaction';
 import {SignedTransaction} from './blockchain/transactions/signedTransaction';
 import {Base58} from './utils/base58';
+import {Utils} from './utils/utils';
 import {AssetValue} from './blockchain/transactions/assetValue';
 
 export {ValidationResult} from './blockchain/transactions/transactions';
@@ -26,6 +27,8 @@ export default class Waves {
    * Base58 encode / decode API
    */
   static Base58: Class<Base58> = Base58;
+
+  static Utils: Class<Utils> = Utils;
 
   constructor(network: INetworkParameters) {
     this._name = 'Lib';
@@ -51,7 +54,7 @@ export default class Waves {
   }
 
   /**
-   * TODO: add attachments
+   * Create unsigned Asset Transfer transaction
    *
    * @param senderPublicKey
    * @param recipient
@@ -60,6 +63,7 @@ export default class Waves {
    * @param feeAssetId
    * @param fee
    * @param timestamp
+   * @param attachment
    * @returns {TransferTransaction}
    */
   createAssetTransfer(senderPublicKey: string,
@@ -68,18 +72,19 @@ export default class Waves {
                       amount: number,
                       feeAssetId: ?string,
                       fee: number,
-                      timestamp: number): TransferTransaction {
+                      timestamp: number,
+                      attachment: ?string): TransferTransaction {
 
     const senderPubKeyBytes = Base58.decode(senderPublicKey);
     const recipientBytes = Base58.decode(recipient);
     const assetIdBytes = (assetId == null) ? new Uint8Array() : Base58.decode(assetId);
     const feeAssetIdBytes = (feeAssetId == null) ? new Uint8Array() : Base58.decode(feeAssetId);
+    const attachBytes = (attachment == null || attachment === '') ? null : Base58.decode(attachment);
 
-    const tx = new TransferTransaction(senderPubKeyBytes, recipientBytes,
+    return new TransferTransaction(senderPubKeyBytes, recipientBytes,
       new AssetValue(assetIdBytes, amount),
       new AssetValue(feeAssetIdBytes, fee),
-      timestamp, null);
-    return tx;
+      timestamp, attachBytes);
   }
 
   static signTransaction(tx, privateKey): SignedTransaction {
