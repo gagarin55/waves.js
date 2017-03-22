@@ -64,6 +64,9 @@ export class AssetTransferTransaction {
   }
 
   static fromSigned(signedTx: SignedTransaction): AssetTransferTransaction {
+    const attachmentBase58 = (signedTx.tx.attachment == null || signedTx.tx.attachment.length === 0) ?
+      null : Base58.encode(signedTx.tx.attachment);
+
     return new AssetTransferTransaction(
       Base58.encode(signedTx.tx.senderPublicKey),
       Base58.encode(signedTx.tx.amount.assetId),
@@ -72,7 +75,7 @@ export class AssetTransferTransaction {
       signedTx.tx.fee.value,
       Base58.encode(signedTx.tx.fee.assetId),
       signedTx.tx.timestamp,
-      null,
+      attachmentBase58,
       Base58.encode(signedTx.signature)
     );
   }
