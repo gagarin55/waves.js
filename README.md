@@ -9,3 +9,11 @@ Waves JavaScript Library: HTTP API client and auxiliary functions
 ```npm install --save waves.js```
 
 If you can not find any feature please do not hesitate - create issue.
+
+## Development
+
+Checkout repository.
+
+Run ```npm install``` to get all node dependencies.
+
+```npm run test``` will run all tests.
