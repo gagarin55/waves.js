@@ -14,4 +14,11 @@ describe('Waves: Account', () => {
         const account = Account.create(new MainNet(), seed);
         expect(account.address).to.be.equal(validAddress);
     });
+
+    it('should create correct address for MainNet (Official wallet - Waves Client 1.0.32)', () => {
+        const seed = 'deliver squirrel ski symbol october shoot uncle assault never chief dance primary exchange treat tray';
+        const validAddress = '3PCNcUEeR9pS4tySMT8jNzAqBtyKeu1PpLx';
+        const account = Account.create(new MainNet(), seed);
+        expect(account.address).to.be.equal(validAddress);
+    });
 });
